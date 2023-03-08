@@ -3,7 +3,7 @@
 
 ## **Auth**
 - SignIn
-    - Api: **POST**: http://localhost:3000/api/v1/auths/sign-in
+    - Api: **POST**: https://ptask.cyclic.app/api/v1/auths/sign-in
     - Request:
     ```json
     {
@@ -21,7 +21,7 @@
     }
     ```
 - SignUp
-    - Api: **POST**: http://localhost:3000/api/v1/auths/sign-up
+    - Api: **POST**: https://ptask.cyclic.app/api/v1/auths/sign-up
     - Request:
     ```json
     {
@@ -47,7 +47,7 @@
 ## **Account**
 
 - getAllCount
-    - Api: **GET**:  http://localhost:3000/api/v1/accounts    
+    - Api: **GET**:  https://ptask.cyclic.app/api/v1/accounts    
     - Reponse:
     ```json
     [
@@ -56,7 +56,7 @@
     ]
     ```
 - getAccountById
-    - Api: **GET**:  http://localhost:3000/api/v1/accounts/:id
+    - Api: **GET**:  https://ptask.cyclic.app/api/v1/accounts/:id
     - Reponse
     ```json
     {
@@ -66,7 +66,7 @@
     }
     ```
 - getAccountByEmail
-    - Api: **GET**:  http://localhost:3000/api/v1/accounts/email/:email
+    - Api: **GET**:  https://ptask.cyclic.app/api/v1/accounts/email/:email
     - Reponse
     ```json
     {
@@ -76,7 +76,7 @@
     }
     ```
 - changePassword
-    - Api: **PATCH**:    http://localhost:3000/api/v1/accounts/change-password/:id
+    - Api: **PATCH**:    https://ptask.cyclic.app/api/v1/accounts/change-password/:id
     - Request
     ```json
     {
@@ -93,7 +93,7 @@
     }
     ```
 - forgetPassword
-    - Api: **PATCH**:    http://localhost:3000/api/v1/accounts/forget-password
+    - Api: **PATCH**:    https://ptask.cyclic.app/api/v1/accounts/forget-password
     - Request
     ```json
     {
@@ -111,7 +111,7 @@
     ```
 ## **User**
 - getAllUser
-    - Api: **Get**:    http://localhost:3000/api/v1/users/
+    - Api: **Get**:    https://ptask.cyclic.app/api/v1/users/
     - Reponse
     ```json
     {
@@ -125,7 +125,7 @@
     }
     ```
 - getUserById
-    - Api: **Get**:    http://localhost:3000/api/v1/users/63f47b681e6c6175bf4ce69c
+    - Api: **Get**:    https://ptask.cyclic.app/api/v1/users/63f47b681e6c6175bf4ce69c
     - Reponse
     ```json
     {
@@ -144,7 +144,7 @@
     }
     ```
 - getUserByEmail
-    - Api: **Get**:    http://localhost:3000/api/v1/users/email/12345@gmail.com
+    - Api: **Get**:    https://ptask.cyclic.app/api/v1/users/email/12345@gmail.com
     - Reponse
     ```json
     {
@@ -163,7 +163,7 @@
     }
     ```
 - getUserByName
-    - Api: **Get**:    http://localhost:3000/api/v1/users/email/ABC
+    - Api: **Get**:    https://ptask.cyclic.app/api/v1/users/email/ABC
     - Reponse
     ```json
     {
@@ -197,7 +197,7 @@
     }
     ```
 - getUserByPhone
-    - Api: **Get**:    http://localhost:3000/api/v1/users/phone/879276284
+    - Api: **Get**:    https://ptask.cyclic.app/api/v1/users/phone/879276284
     - Reponse
     ```json
     {
@@ -216,7 +216,7 @@
     }
     ```
 - updateUser:
-    - Api: **PATCH**:    http://localhost:3000/api/v1/users/update/63f47b681e6c6175bf4ce69c
+    - Api: **PATCH**:    https://ptask.cyclic.app/api/v1/users/update/63f47b681e6c6175bf4ce69c
     - Request
     ```json
     {
@@ -244,7 +244,7 @@
     }
     ```
 - lockUser:
-    - Api: **PATCH**:    http://localhost:3000/api/v1/users/lock/63f47b681e6c6175bf4ce69c
+    - Api: **PATCH**:    https://ptask.cyclic.app/api/v1/users/lock/63f47b681e6c6175bf4ce69c
     - Reponse
     ```json
     {
@@ -262,7 +262,7 @@
     ```
 ## Role
 - getAllRolesOfUser:
-    - Api: **GET**:    http://localhost:3000/api/v1/roles/63f47b681e6c6175bf4ce69c
+    - Api: **GET**:    https://ptask.cyclic.app/api/v1/roles/63f47b681e6c6175bf4ce69c
     - Reponse
     ```json
     [
@@ -277,7 +277,7 @@
     ]
     ```
 - createRole:
-    - Api: **POST**:    http://localhost:3000/api/v1/roles/create
+    - Api: **POST**:    https://ptask.cyclic.app/api/v1/roles/create
     - Request
     ```json
     {
@@ -297,7 +297,7 @@
     }
     ```
 - changeNameRole:
-    - Api: **PATCH**:    http://localhost:3000/api/v1/roles/change-name/63f4806dc4ec61b3edc26f6e
+    - Api: **PATCH**:    https://ptask.cyclic.app/api/v1/roles/change-name/63f4806dc4ec61b3edc26f6e
     - Request
     ```json
     {
@@ -315,7 +315,7 @@
         "__v": 2
     }
 - addMembersRole: **Đang có bug**
-    - Api: **PATCH**:    http://localhost:3000/api/v1/roles/add-member/63f4806dc4ec61b3edc26f6e
+    - Api: **PATCH**:    https://ptask.cyclic.app/api/v1/roles/add-member/63f4806dc4ec61b3edc26f6e
     - Request
     ```json
     {
@@ -335,7 +335,7 @@
     ```
 
 - removeMemberRole: 
-    - Api: **PATCH**:    http://localhost:3000/api/v1/roles/remove-member/63f4806dc4ec61b3edc26f6e
+    - Api: **PATCH**:    https://ptask.cyclic.app/api/v1/roles/remove-member/63f4806dc4ec61b3edc26f6e
     - Request
     ```json
     {
@@ -356,7 +356,7 @@
     ```
 ## Project
 - createProject
-    - Api: **POST**:    http://localhost:3000/api/v1/projects/create
+    - Api: **POST**:    https://ptask.cyclic.app/api/v1/projects/create
     - Request
     ```json
     {
@@ -381,7 +381,7 @@
     }
     ```
 - getProjectById:
-    - Api: **GET**:    http://localhost:3000/api/v1/projects/63f485974bad526b718962a5
+    - Api: **GET**:    https://ptask.cyclic.app/api/v1/projects/63f485974bad526b718962a5
     - Reponse
     ```json
     {
@@ -395,7 +395,7 @@
     }
     ```
 - getProjectByName:
-    - Api: **GET**:    http://localhost:3000/api/v1/projects/name/name ***(:name)***
+    - Api: **GET**:    https://ptask.cyclic.app/api/v1/projects/name/name ***(:name)***
     - Reponse
     ```json
     [
@@ -421,7 +421,7 @@
     ```
 ## Work
 - getAllWorkByProjectId:
-    - Api: **GET**:    hhttp://localhost:3000/api/v1/works/63f4836e4986d4991247715a
+    - Api: **GET**:    hhttps://ptask.cyclic.app/api/v1/works/63f4836e4986d4991247715a
     - Reponse
     ```json
     [
@@ -449,7 +449,7 @@
     ]
     ```
 - createWork
-    - Api: **PATCH**:    http://localhost:3000/api/v1/works/change-name/6407447d95b5b542e6bc7e0d
+    - Api: **PATCH**:    https://ptask.cyclic.app/api/v1/works/change-name/6407447d95b5b542e6bc7e0d
     - Request
     ```json
     {
@@ -468,7 +468,7 @@
     ```
 ## Task
 - createTask
-    - Api: **POST**:    http://localhost:3000/api/v1/tasks/
+    - Api: **POST**:    https://ptask.cyclic.app/api/v1/tasks/
     - Request
     ```json
     {
@@ -504,7 +504,7 @@
     }
     ```
 - getAllTaskInList 
-    - Api: **GET**:    http://localhost:3000/api/v1/tasks/get-task-in-list/63f48728f071ef7be2a9e9bd
+    - Api: **GET**:    https://ptask.cyclic.app/api/v1/tasks/get-task-in-list/63f48728f071ef7be2a9e9bd
     - Reponse
     ```json
     [
@@ -545,7 +545,7 @@
     ]
     ```
 - getTaskById
-    - Api: **GET**:    http://localhost:3000/api/v1/tasks/63f48c86c765a223ecb74b8e
+    - Api: **GET**:    https://ptask.cyclic.app/api/v1/tasks/63f48c86c765a223ecb74b8e
     - Reponse
     ```json
     {
@@ -567,7 +567,7 @@
     }
     ```
 - getTaskByName:
-    - Api: **GET**:    http://localhost:3000/api/v1/tasks/name/name ***(:name)***
+    - Api: **GET**:    https://ptask.cyclic.app/api/v1/tasks/name/name ***(:name)***
     - Reponse
     ```json
     [
