@@ -17,7 +17,7 @@ exports.getProjectById = async (req,res) => {
 exports.getProjectByName = async (req,res) => {
   try {
     let name = req.params.name
-    let projects = await PROJECT.findOne({
+    let projects = await PROJECT.find({
       name:name
     })
     return res.status(200).json(projects)
@@ -50,14 +50,14 @@ exports.updateProject = async (req,res) => {
 //done
 exports.createProject = async (req,res) => {
   try {
-    let {name,startTime, finishTime,status,roleIds} = req.body
+    let {name,startTime, finishTime,roleIds} = req.body
     let start = MOMENT(startTime,"MM-DD-YYYY")      
     let finish = MOMENT(finishTime,"MM-DD-YYYY")      
     let project = await PROJECT.create({
       name:name,
       startTime :start,
       finishTime : finish,
-      status:status,
+      status:1,
       roleIds:roleIds
     })
     return res.status(201).json(project) 

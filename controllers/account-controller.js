@@ -100,8 +100,8 @@ exports.changePassword = async (req, res) => {
 //done
 exports.forgetPassword = async (req, res) => {
     try {
-        let {newPassword, confirm} = req.body
-        let id = req.params.id
+        let {email, newPassword, confirm} = req.body
+        console.log(req.body);
         let confirmPassword = accountService.confirmNewPassword(newPassword, confirm)
         if (!confirmPassword) {
             return res.status(404).json({
@@ -109,9 +109,15 @@ exports.forgetPassword = async (req, res) => {
             })
         }
         let hash = await BCRYPT.hash(newPassword, 10);
-        await ACCOUNT.findByIdAndUpdate(id, { password: hash })
-        res.status(200).json({
-            id: id,
+        let account = await ACCOUNT.findOne({
+            email:email
+        })
+        console.log(account);
+        account.password = hash
+        account.save()
+        // await ACCOUNT.findByIdAndUpdate(id, { password: hash })
+        return res.status(200).json({
+            id: account.id,
             status: "Success"
         })
     } catch (error) {
