@@ -8,6 +8,6 @@ ROUTER.get("/email/:email",accountController.getAccountByEmail)
 ROUTER.post("/create",accountController.createAccount)
 
 ROUTER.patch("/change-password/:id",accountController.changePassword)
-ROUTER.patch("/forget-password/:id",accountController.forgetPassword)
+ROUTER.patch("/forget-password",accountController.forgetPassword)
 
 module.exports = ROUTER

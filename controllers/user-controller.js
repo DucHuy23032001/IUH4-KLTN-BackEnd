@@ -62,14 +62,14 @@ exports.getUserByEmail = async (req, res) => {
 exports.getUserByName = async (req, res) => {
     try {
         let name = req.params.name
-        let user = await USER.findOne({fullName:name})
+        let user = await USER.find({fullName:name})
         if (user) {
-            let data = { "_id": user.id , "fullName":user.fullName,"birthday":user.birthday,
-            "address":user.address,"phoneNumber":user.phoneNumber,"gender":user.gender,
-            "avatar":user.avatar,"status":user.status,"accountId":user.accountId}
+            // let data = { "_id": user.id , "fullName":user.fullName,"birthday":user.birthday,
+            // "address":user.address,"phoneNumber":user.phoneNumber,"gender":user.gender,
+            // "avatar":user.avatar,"status":user.status,"accountId":user.accountId}
             return res.status(200).json({
                 status: 'Success',
-                data: data
+                data: user
             });
         }
     } catch (error) {
@@ -121,7 +121,7 @@ exports.createUser = async (req,res,accountId) => {
 exports.updateUser = async (req,res) => {
     try {
         let id = req.params.id
-        let {fullName,birthday,address,phoneNumber,gender,avatarImage,accountId} = req.body  
+        let {fullName,birthday,address,phoneNumber,gender,avatarImage} = req.body  
         let date = MOMENT(birthday,"MM-DD-YYYY")      
         await USER.findByIdAndUpdate(id,{
             fullName:fullName,
@@ -130,8 +130,7 @@ exports.updateUser = async (req,res) => {
             phoneNumber:phoneNumber,
             gender:gender,
             avatar:avatarImage,
-            status:true,
-            accountId:accountId
+            status:true
         })
         let user = await USER.findById(id)
         return res.status(200).json(user)
