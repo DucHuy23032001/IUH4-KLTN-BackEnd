@@ -3,6 +3,16 @@ const ROLE = require('../models/role')
 const MOMENT = require('moment')
 
 //done
+exports.getAllProject = async (req,res) => {
+  try {
+    let projects = await PROJECT.find()
+    return res.status(200).json(projects)
+  } catch (error) {
+    return res.status(500).json(error)
+  }
+}
+
+//done
 exports.getProjectById = async (req,res) => {
   try {
     let id = req.params.id
@@ -29,7 +39,7 @@ exports.getProjectByName = async (req,res) => {
 //done
 exports.updateProject = async (req,res) => {
   try {
-    let {name,startTime, finishTime,status,roleIds} = req.body
+    let {name,startTime, finishTime,status,roleIds, background} = req.body
     let start = MOMENT(startTime,"MM-DD-YYYY")      
     let finish = MOMENT(finishTime,"MM-DD-YYYY")   
     let id = req.params.id
@@ -38,6 +48,7 @@ exports.updateProject = async (req,res) => {
       start_time :start,
       finish_time : finish,
       status:status,
+      background:background,
       roleIds:roleIds
     })  
     let project = await PROJECT.findById(id)
@@ -50,7 +61,7 @@ exports.updateProject = async (req,res) => {
 //done
 exports.createProject = async (req,res) => {
   try {
-    let {name,startTime, finishTime,roleIds} = req.body
+    let {name,startTime, finishTime,roleIds, background} = req.body
     let start = MOMENT(startTime,"MM-DD-YYYY")      
     let finish = MOMENT(finishTime,"MM-DD-YYYY")      
     let project = await PROJECT.create({
@@ -58,6 +69,7 @@ exports.createProject = async (req,res) => {
       startTime :start,
       finishTime : finish,
       status:1,
+      background:background,
       roleIds:roleIds
     })
     return res.status(201).json(project) 
