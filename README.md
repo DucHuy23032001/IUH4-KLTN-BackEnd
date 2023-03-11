@@ -355,6 +355,31 @@
     }
     ```
 ## Project
+- getAllProject
+    - Api: **GET**:    https://ptask.cyclic.app/api/v1/projects
+    - Reponse
+    ```json
+    [
+        {
+            "_id": "63f4836e4986d4991247715a",
+            "name": "name",
+            "startTime": "2001-03-22T17:00:00.000Z",
+            "finishTime": "2100-03-22T17:00:00.000Z",
+            "status": true,
+            "roleIds": [],
+            "__v": 0
+        },
+        {
+            "_id": "63f483964986d4991247715c",
+            "name": "name",
+            "startTime": "2001-03-22T17:00:00.000Z",
+            "finishTime": "2100-03-22T17:00:00.000Z",
+            "status": true,
+            "roleIds": [],
+            "__v": 0
+        }
+    ]
+    ```
 - createProject
     - Api: **POST**:    https://ptask.cyclic.app/api/v1/projects/create
     - Request
