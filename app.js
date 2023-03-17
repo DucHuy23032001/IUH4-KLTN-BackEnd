@@ -6,6 +6,7 @@ const xss = require('xss-clean');
 const fileUpload = require('express-fileupload')
 const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require('helmet');
+const multer = require("multer")
 
 const app = express()
 

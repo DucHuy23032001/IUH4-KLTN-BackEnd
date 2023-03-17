@@ -19,23 +19,16 @@ exports.signUp = async (req, res) => {
         })
       }
     }
-
-    // if (checkEmail && checkPassword) {
     let accountId = await accountController.createAccount(req, res)
-    let userId = await userController.createUser(req, res, accountId)
-    let token = accountService.createToken(userId)
+    let user = await userController.createUser(req, res, accountId)
+    let token = accountService.createToken(req, res)
+
     return res.status(200).json({
-      accountId: accountId,
-      userId: userId,
+      user: user,
       token: token
     })
-    // } else {
-    //   return res.status(400).json({
-    //     msg: "Check"
-    //   })
-    // }
   } catch (error) {
-    res.status(500).json(error)
+    return res.status(500).json(error)
   }
 }
 
@@ -46,8 +39,8 @@ exports.signIn = async (req, res) => {
     let checkEmail = await accountService.checkEmail(email)
     if (!checkEmail) {
       let checkPassword = await accountService.checkPassword(email, password)
-      if (checkPassword.check) {
-        let token = accountService.createToken(checkPassword.userId)
+      if (checkPassword) {
+        let token = accountService.createToken(checkPassword)
         return res.status(200).json({
           msg: "Success",
           accountId: checkPassword.accountId,
@@ -65,7 +58,7 @@ exports.signIn = async (req, res) => {
       })
     }
   } catch (error) {
-    res.status(500).json(error)
+    return res.status(500).json(error)
   }
 }
 

@@ -18,8 +18,9 @@ exports.getAllRoleOfUser = async (req, res) => {
 //done
 exports.createRole = async (req, res) => {
     try {
-        let { name, members } = req.body
+        let { name, members, leader } = req.body
         let role = await ROLE.create({
+            leader:leader,
             name: name,
             members: members
         })

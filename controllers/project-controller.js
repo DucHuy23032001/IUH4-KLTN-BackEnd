@@ -63,7 +63,15 @@ exports.createProject = async (req,res) => {
   try {
     let {name,startTime, finishTime,roleIds, background} = req.body
     let start = MOMENT(startTime,"MM-DD-YYYY")      
-    let finish = MOMENT(finishTime,"MM-DD-YYYY")      
+    let finish = MOMENT(finishTime,"MM-DD-YYYY")    
+    
+    if(!background){
+      background = "https://iuh4kltn.s3.ap-southeast-1.amazonaws.com/project.png"
+    }
+    if(!startTime){
+      startTime = Date.now()
+    }
+
     let project = await PROJECT.create({
       name:name,
       startTime :start,
