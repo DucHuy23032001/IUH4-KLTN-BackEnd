@@ -19,7 +19,8 @@
   },
   "homepage": "https://github.com/DucHuy23032001/IUH4-KLTN-BackEnd#readme",
   "dependencies": {
-    "aws-sdk": "^2.1315.0",
+    "@aws-sdk/client-s3": "^3.290.0",
+    "aws-sdk-js-codemod": "^0.14.1",
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.1",
     "cookie-parser": "^1.4.6",

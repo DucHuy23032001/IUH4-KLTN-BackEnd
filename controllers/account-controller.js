@@ -12,7 +12,7 @@ exports.getAllAccount = async (req, res) => {
             list.push(i.id)
         }
         console.log(list);
-        res.status(200).json(list)
+        return res.status(200).json(list)
     } catch (error) {
         return res.status(500).json({ msg: error })
     }
@@ -27,7 +27,7 @@ exports.getAccountByEmail = async (req, res) => {
         })
         if (account) {
             let data = { id: account.id, email: account.email, password: account.password }
-            res.status(200).json(data);
+            return res.status(200).json(data);
         }
     } catch (error) {
         return res.status(500).json({ msg: error });
@@ -41,7 +41,7 @@ exports.getAccountById = async (req, res) => {
         let account = await ACCOUNT.findById(id)
         if (account) {
             let _data = { id: account.id, email: account.email, password: account.password }
-            res.status(200).json(_data);
+            return res.status(200).json(_data);
         }
     } catch (error) {
         return res.status(500).json({ msg: error });
