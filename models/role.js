@@ -6,6 +6,10 @@ let roleSchema = new SCHEMA({
         type: String,
         require:true
     },
+    leader: {
+        type: SCHEMA.Types.ObjectId,
+        require: true
+    },
     members: [
         {
             type: SCHEMA.Types.ObjectId,

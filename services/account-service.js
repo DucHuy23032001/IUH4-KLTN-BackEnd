@@ -3,11 +3,12 @@ const BCRYPT = require('bcrypt')
 const JWT = require("jsonwebtoken");
 const USER = require('../models/user');
 
-exports.createToken = (id) => {
+exports.createToken = (req,res) => {
     try {
+        let data = req.body
         return JWT.sign(
             {
-                id,
+                data,
             },
             process.env.JWT_SECRET,
             {
@@ -63,8 +64,13 @@ exports.checkPassword = async (email,paswordSignIn) =>{
             account_id:account.id
         })
         let check = await BCRYPT.compare(paswordSignIn, account.password);
-        return {check:check,accountId:account.id,userId:user.id}
+        if(check) {
+            return user
+        }
+        else {
+            return !check
+        }
     } catch (error) {
-        res.status(500).json(error)
+        return res.status(500).json(error)
     }
 }
