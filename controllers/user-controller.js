@@ -96,8 +96,6 @@ exports.createUser = async (req, res, accountId) => {
     try {
         let { fullName, birthday, address, phoneNumber, gender } = req.body
         let date = MOMENT(birthday, "MM-DD-YYYY")
-        console.log(birthday);
-        console.log(date);
         let user = await USER.create({
             fullName: fullName,
             birthday: date,
