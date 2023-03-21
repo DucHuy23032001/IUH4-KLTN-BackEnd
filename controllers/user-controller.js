@@ -31,10 +31,7 @@ exports.getUserById = async (req, res) => {
                 "address": user.address, "phoneNumber": user.phoneNumber, "gender": user.gender,
                 "avatar": user.avatar, "status": user.status, "accountId": user.accountId
             }
-            return res.status(200).json({
-                status: 'Success',
-                data: data
-            });
+            return res.status(200).json(data);
         }
     } catch (error) {
         return res.status(500).json({ msg: error });
@@ -53,10 +50,7 @@ exports.getUserByEmail = async (req, res) => {
                 "address": user.address, "phoneNumber": user.phoneNumber, "gender": user.gender,
                 "avatar": user.avatar, "status": user.status, "accountId": user.accountId
             }
-            return res.status(200).json({
-                status: 'Success',
-                data: data
-            });
+            return res.status(200).json(data);
         }
     } catch (error) {
         return res.status(500).json({ msg: error });
@@ -72,10 +66,7 @@ exports.getUserByName = async (req, res) => {
             // let data = { "_id": user.id , "fullName":user.fullName,"birthday":user.birthday,
             // "address":user.address,"phoneNumber":user.phoneNumber,"gender":user.gender,
             // "avatar":user.avatar,"status":user.status,"accountId":user.accountId}
-            return res.status(200).json({
-                status: 'Success',
-                data: user
-            });
+            return res.status(200).json(user);
         }
     } catch (error) {
         return res.status(500).json({ msg: error });
@@ -93,10 +84,7 @@ exports.getUserByPhone = async (req, res) => {
                 "address": user.address, "phoneNumber": user.phoneNumber, "gender": user.gender,
                 "avatar": user.avatar, "status": user.status, "accountId": user.accountId
             }
-            return res.status(200).json({
-                status: 'Success',
-                data: data
-            });
+            return res.status(200).json(data);
         }
     } catch (error) {
         return res.status(500).json({ msg: error });
@@ -108,8 +96,6 @@ exports.createUser = async (req, res, accountId) => {
     try {
         let { fullName, birthday, address, phoneNumber, gender } = req.body
         let date = MOMENT(birthday, "MM-DD-YYYY")
-        console.log(birthday);
-        console.log(date);
         let user = await USER.create({
             fullName: fullName,
             birthday: date,

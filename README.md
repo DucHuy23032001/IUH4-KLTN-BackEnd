@@ -129,8 +129,6 @@
     - Reponse
     ```json
     {
-        "status": "Success",
-        "data": {
             "_id": "63f47b681e6c6175bf4ce69c",
             "fullName": "Huy 111",
             "birthday": "2023-02-13T17:00:00.000Z",
@@ -140,7 +138,6 @@
             "avatar": "https://mechat.s3.ap-southeast-1.amazonaws.com/avatar-nam.png",
             "status": false,
             "accountId": "63f47b681e6c6175bf4ce69a"
-        }
     }
     ```
 - getUserByEmail
@@ -148,8 +145,6 @@
     - Reponse
     ```json
     {
-        "status": "Success",
-        "data": {
             "_id": "63f47b681e6c6175bf4ce69c",
             "fullName": "Huy 111",
             "birthday": "2023-02-13T17:00:00.000Z",
@@ -159,7 +154,6 @@
             "avatar": "https://mechat.s3.ap-southeast-1.amazonaws.com/avatar-nam.png",
             "status": false,
             "accountId": "63f47b681e6c6175bf4ce69a"
-        }
     }
     ```
 - getUserByName
@@ -167,8 +161,7 @@
     - Reponse
     ```json
     {
-        "status": "Success",
-        "data": [
+        [
             {
                 "_id": "63f481f55f6bee2a60d910eb",
                 "fullName": "ABC",
@@ -201,8 +194,7 @@
     - Reponse
     ```json
     {
-        "status": "Success",
-        "data": {
+        {
             "_id": "63f47b681e6c6175bf4ce69c",
             "fullName": "Huy 111",
             "birthday": "2023-02-13T17:00:00.000Z",
