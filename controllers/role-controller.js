@@ -71,7 +71,7 @@ exports.addMember = async (req, res) => {
         let role = await ROLE.findById(id)
         let members = role.members
         let check = false
-        let newMembers = []
+        // let newMembers = []
         for (let i of memberIds) {
             for (let j of members) {
 

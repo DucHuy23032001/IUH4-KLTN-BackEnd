@@ -31,7 +31,7 @@ exports.getUserById = async (req, res) => {
                 "address": user.address, "phoneNumber": user.phoneNumber, "gender": user.gender,
                 "avatar": user.avatar, "status": user.status, "accountId": user.accountId
             }
-            res.status(200).json({
+            return res.status(200).json({
                 status: 'Success',
                 data: data
             });
@@ -53,7 +53,7 @@ exports.getUserByEmail = async (req, res) => {
                 "address": user.address, "phoneNumber": user.phoneNumber, "gender": user.gender,
                 "avatar": user.avatar, "status": user.status, "accountId": user.accountId
             }
-            res.status(200).json({
+            return res.status(200).json({
                 status: 'Success',
                 data: data
             });
@@ -93,7 +93,7 @@ exports.getUserByPhone = async (req, res) => {
                 "address": user.address, "phoneNumber": user.phoneNumber, "gender": user.gender,
                 "avatar": user.avatar, "status": user.status, "accountId": user.accountId
             }
-            res.status(200).json({
+            return res.status(200).json({
                 status: 'Success',
                 data: data
             });
@@ -107,8 +107,9 @@ exports.getUserByPhone = async (req, res) => {
 exports.createUser = async (req, res, accountId) => {
     try {
         let { fullName, birthday, address, phoneNumber, gender } = req.body
-        // let linkAvatar = await AWS_SERVICE.saveOneFile(req, res, avatarImage)
         let date = MOMENT(birthday, "MM-DD-YYYY")
+        console.log(birthday);
+        console.log(date);
         let user = await USER.create({
             fullName: fullName,
             birthday: date,
@@ -119,7 +120,6 @@ exports.createUser = async (req, res, accountId) => {
             status: true,
             accountId: accountId
         })
-        console.log("USer" ,user);
         return user
     } catch (error) {
         return res.status(500).json({ msg: error });
