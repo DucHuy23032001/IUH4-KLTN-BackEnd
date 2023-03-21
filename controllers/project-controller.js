@@ -61,7 +61,7 @@ exports.updateProject = async (req,res) => {
 //done
 exports.createProject = async (req,res) => {
   try {
-    let {name,startTime, finishTime,roleIds, background} = req.body
+    let {name,startTime, finishTime,roleIds, background, mainProject} = req.body
     let start = MOMENT(startTime,"MM-DD-YYYY")      
     let finish = MOMENT(finishTime,"MM-DD-YYYY")    
     
@@ -73,6 +73,7 @@ exports.createProject = async (req,res) => {
     }
 
     let project = await PROJECT.create({
+      mainProject:mainProject,
       name:name,
       startTime :start,
       finishTime : finish,
