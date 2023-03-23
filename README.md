@@ -273,18 +273,25 @@
     - Request
     ```json
     {
-        "name":"name",
-        "members":["63f47b681e6c6175bf4ce69c"]
+        "status":true,
+        "createId":"641ba2cf87b485c176a160ae",
+        "name":"Team 1",
+        "leaderId":"641ba30d87b485c176a160b4",
+        "members":["641ba31887b485c176a160ba","641ba30d87b485c176a160b4"]
     }
     ```
     - Reponse
     ```json
     {
-        "name": "name",
+        "name": "Team 1",
+        "createId": "641ba2cf87b485c176a160ae",
+        "leaderId": "641ba30d87b485c176a160b4",
         "members": [
-            "63f47b681e6c6175bf4ce69c"
+            "641ba31887b485c176a160ba",
+            "641ba30d87b485c176a160b4"
         ],
-        "_id": "6406e3d3aaa26ea50d253f4f",
+        "status": true,
+        "_id": "641ba36e87b485c176a160bc",
         "__v": 0
     }
     ```
@@ -377,23 +384,27 @@
     - Request
     ```json
     {
-        "name":"name 2",
-        "startTime" :"03-23-2001",
-        "finishTime" : "03-23-2100",
-        "roleIds":["63f4806dc4ec61b3edc26f6e"]
+        "mainProject":"641ba2cf87b485c176a160ae",
+        "name":"Project test",
+        "startTime" :"03-24-2001",
+        "finishTime" :"03-24-2001",
+        "roleIds":["641ba36e87b485c176a160bc","641ba3a387b485c176a160be"]
     }
     ```
     - Reponse
     ```json
     {
-        "name": "name 2",
-        "startTime": "2001-03-22T17:00:00.000Z",
-        "finishTime": "2100-03-22T17:00:00.000Z",
+        "name": "Project test",
+        "startTime": "2001-03-23T17:00:00.000Z",
+        "finishTime": "2001-03-23T17:00:00.000Z",
         "status": true,
+        "background": "https://iuh4kltn.s3.ap-southeast-1.amazonaws.com/project.png",
         "roleIds": [
-            "63f4806dc4ec61b3edc26f6e"
+            "641ba36e87b485c176a160bc",
+            "641ba3a387b485c176a160be",
+            "641ba3f0efd24fc581820ab8"
         ],
-        "_id": "640742ff008ad2abde987c52",
+        "_id": "641ba3f0efd24fc581820aba",
         "__v": 0
     }
     ```
@@ -436,6 +447,41 @@
         }
     ]
     ```
+- getProjectByIdUser:
+    - Api: **GET**:    https://ptask.cyclic.app/api/v1/projects/id-user/64132d32a992069c9eeca5b8 ***(:id)***
+    - Reponse
+    ```json
+    [
+        {
+            "_id": "64194e53a0702b7822abd5d9",
+            "name": "Project 1",
+            "startTime": "2001-03-23T17:00:00.000Z",
+            "finishTime": "2001-04-23T17:00:00.000Z",
+            "status": true,
+            "background": "https://iuh4kltn.s3.ap-southeast-1.amazonaws.com/project.png",
+            "roleIds": [
+                "641479b36e21cef193748903",
+                "641479ca6e21cef193748905"
+            ],
+            "mainProject": "641329c27a9b8b3c70c80864",
+            "__v": 0
+        },
+        {
+            "_id": "641a946603fca33b72b65318",
+            "name": "Project test time",
+            "startTime": "2001-03-23T17:00:00.000Z",
+            "finishTime": "2001-03-23T17:00:00.000Z",
+            "status": true,
+            "background": "https://iuh4kltn.s3.ap-southeast-1.amazonaws.com/project.png",
+            "roleIds": [
+                "641479b36e21cef193748903",
+                "641479ca6e21cef193748905"
+            ],
+            "mainProject": "641329c27a9b8b3c70c80864",
+            "__v": 0
+        }
+    ]
+    ```
 ## Work
 - getAllWorkByProjectId:
     - Api: **GET**:    hhttps://ptask.cyclic.app/api/v1/works/63f4836e4986d4991247715a
@@ -470,16 +516,19 @@
     - Request
     ```json
     {
-        "name":"test"
+        "createId":"641329c27a9b8b3c70c80864",
+        "name":"Work 1",
+        "projectId":"63f4836e4986d4991247715a"    
     }
     ```
     - Reponse
     ```json
     {
-        "_id": "6407447d95b5b542e6bc7e0d",
-        "name": "test",
+        "name": "Work 2",
         "status": false,
-        "projectId": "63f4836e4986d4991247715a",
+        "createId": "641ba30d87b485c176a160b4",
+        "projectId": "641ba3f0efd24fc581820aba",
+        "_id": "641ba5aaefd24fc581820abe",
         "__v": 0
     }
     ```
@@ -489,33 +538,32 @@
     - Request
     ```json
     {
-        "name":"name",
+        "name":"task 2",
         "startDay":"03-23-2001",
-        "finishDay":"03-23-20100",
+        "finishDay":"03-23-2010",
         "startHour":"9:00",
         "finishHour":"16:00",
         "linkSupport":"ABC",
         "imageLink":"ABC",
-        "listId":"63f48728f071ef7be2a9e9bd",
-        "members":["63f47b681e6c6175bf4ce69c","63f481f55f6bee2a60d910eb"]
+        "workId":"641ba5a6efd24fc581820abc",
+        "members":["641ba30d87b485c176a160b4"]
     }
     ```
     - Reponse
     ```json
     {
-        "name": "name",
+        "name": "task 2",
         "startDay": "2001-03-22T17:00:00.000Z",
         "finishDay": "2010-03-22T17:00:00.000Z",
         "startHour": "9:00",
         "finishHour": "16:00",
         "imageLink": "ABC",
-        "listId": "63f48728f071ef7be2a9e9bd",
+        "workId": "641ba5a6efd24fc581820abc",
         "members": [
-            "63f47b681e6c6175bf4ce69c",
-            "63f481f55f6bee2a60d910eb"
+            "641ba30d87b485c176a160b4"
         ],
         "status": 3,
-        "_id": "640745aa372921bca42eae22",
+        "_id": "641ba6722d192869ea462018",
         "linkSupports": [],
         "__v": 0
     }

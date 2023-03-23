@@ -37,12 +37,45 @@ exports.getProjectByName = async (req,res) => {
 }
 
 //done
+exports.getProjectByIdUser = async (req,res) => {
+  try {
+      let id = req.params.id
+      let project
+      let role = await ROLE.find({
+        members:{ $in: [id]},
+      })
+      for (let i of role) {
+        project = await PROJECT.find({
+          roleIds: {$in: [i.id]}
+        })
+      }
+      return res.status(200).json(project) 
+  } catch (error) {
+    return res.status(500).json(error)
+  }
+}
+
+//done
 exports.updateProject = async (req,res) => {
   try {
-    let {name,startTime, finishTime,status,roleIds, background} = req.body
+    let {name,startTime, finishTime,status,roleIds, background, mainProject} = req.body
     let start = MOMENT(startTime,"MM-DD-YYYY")      
     let finish = MOMENT(finishTime,"MM-DD-YYYY")   
     let id = req.params.id
+
+    let projectCheck = await PROJECT.findById(id)
+    if(projectCheck.mainProject != mainProject) {
+      return res.status(400).json({
+        message:"Only the project owner can edit"
+      })
+    }
+
+    if (finish - start < 0) {
+      return res.status(400).json({
+        message:"finishTime > startTime"
+      })
+    }
+
     await PROJECT.findByIdAndUpdate(id,{
       name:name,
       start_time :start,
@@ -72,14 +105,27 @@ exports.createProject = async (req,res) => {
       startTime = Date.now()
     }
 
+    if (finish - start < 0) {
+      return res.status(400).json({
+        message:"finishTime > startTime"
+      })
+    }
+
+    let role = await ROLE.create({
+      leaderId:mainProject,
+      name: "Project Owner",
+      members: [mainProject]
+    })
+
+    roleIds.push(role)
+
     let project = await PROJECT.create({
-      mainProject:mainProject,
       name:name,
       startTime :start,
       finishTime : finish,
       status:1,
       background:background,
-      roleIds:roleIds
+      roleIds:roleIds 
     })
     return res.status(201).json(project) 
   } catch (error) {

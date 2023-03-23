@@ -9,6 +9,10 @@ let workSchema = new SCHEMA({
         type:Boolean,
         default:false
     },
+    createId:{
+        type: SCHEMA.Types.ObjectId,
+        require: true
+    },
     projectId:
     {
         type: SCHEMA.Types.ObjectId,

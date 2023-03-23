@@ -6,7 +6,11 @@ let roleSchema = new SCHEMA({
         type: String,
         require:true
     },
-    leader: {
+    createId:{
+        type: SCHEMA.Types.ObjectId,
+        require: true
+    },
+    leaderId: {
         type: SCHEMA.Types.ObjectId,
         require: true
     },
@@ -15,7 +19,11 @@ let roleSchema = new SCHEMA({
             type: SCHEMA.Types.ObjectId,
             require: true
         }
-    ]
+    ],
+    status: {
+            type: Boolean,
+            require: true   
+    }
 })
 
 module.exports = MONGOOSE.model("role", roleSchema)
