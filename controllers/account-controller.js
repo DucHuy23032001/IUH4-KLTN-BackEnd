@@ -112,7 +112,6 @@ exports.forgetPassword = async (req, res) => {
         let account = await ACCOUNT.findOne({
             email:email
         })
-        console.log(account);
         account.password = hash
         account.save()
         // await ACCOUNT.findByIdAndUpdate(id, { password: hash })

@@ -7,7 +7,7 @@ exports.getAllTaskInWork = async (req,res) => {
         let id = req.params.id 
         console.log(id);
         let tasks = await TASK.find({
-            listId:id
+            workId:id
         })
         return res.status(200).json(tasks)
     } catch (error) {
@@ -42,7 +42,7 @@ exports.getTaskByName = async (req,res) => {
 //done
 exports.createTask = async (req,res) => {
     try {
-        let {name, startDay, finishDay, startHour, finishHour, linkSupport, imageLink, listId, members} = req.body
+        let {name, startDay, finishDay, startHour, finishHour, linkSupport, imageLink, workId, members} = req.body
         let dateStart = MOMENT(startDay,"MM-DD-YYYY")      
         let dateFinish = MOMENT(finishDay,"MM-DD-YYYY")      
         let task = await TASK.create({
@@ -53,7 +53,7 @@ exports.createTask = async (req,res) => {
             finishHour:finishHour,
             linkSupport:linkSupport,
             imageLink:imageLink,
-            listId:listId,
+            workId:workId,
             members
         })
         return res.status(200).json(task)

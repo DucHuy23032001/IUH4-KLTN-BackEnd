@@ -43,8 +43,6 @@ exports.signIn = async (req, res) => {
         let token = accountService.createToken(checkPassword)
         return res.status(200).json({
           msg: "Success",
-          accountId: checkPassword.accountId,
-          userId: checkPassword.userId,
           token: token
         })
       } else {
