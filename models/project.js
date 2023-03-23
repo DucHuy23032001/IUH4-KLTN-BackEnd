@@ -27,11 +27,11 @@ let projectSchema = new SCHEMA({
             type:SCHEMA.Types.ObjectId,
             require:[true,"Please fill roleId of project!"]
         }
-    ],
-    mainProject: {
-        type: SCHEMA.Types.ObjectId,
-        require:[true,"Please fill your mainProject!"]
-    }
+    ]
+    // mainProject: {
+    //     type: SCHEMA.Types.ObjectId,
+    //     require:[true,"Please fill your mainProject!"]
+    // }
     
 })
 

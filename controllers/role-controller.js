@@ -18,11 +18,13 @@ exports.getAllRoleOfUser = async (req, res) => {
 //done
 exports.createRole = async (req, res) => {
     try {
-        let { name, members, leader } = req.body
+        let { name, members, leaderId, status, createId } = req.body
         let role = await ROLE.create({
-            leader:leader,
+            status: status,
+            leaderId:leaderId,
             name: name,
-            members: members
+            members: members,
+            createId:createId
         })
         return res.status(200).json(role)
     } catch (error) {
@@ -34,8 +36,14 @@ exports.createRole = async (req, res) => {
 exports.changeName = async (req, res) => {
     try {
         let id = req.params.id
-        let newName = req.body.name
+        // let main
+        let {newName, createId} = req.body
         let role = await ROLE.findById(id)
+        if (role.createId != createId) {
+            return res.status(400).json({
+                message: "Only the creator can edit"
+            })
+        }
         role.name = newName
         await role.save();
         return res.status(200).json(role)
@@ -48,8 +56,13 @@ exports.changeName = async (req, res) => {
 exports.removeMember = async (req, res) => {
     try {
         let id = req.params.id
-        let { memberId } = req.body
+        let { memberId, createId } = req.body
         let role = await ROLE.findById(id)
+        if (role.createId != createId) {
+            return res.status(400).json({
+                message: "Only the creator can edit"
+            })
+        }
         let members = role.members
         members.pull(memberId)
         role.members = members

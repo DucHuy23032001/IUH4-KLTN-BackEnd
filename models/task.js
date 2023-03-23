@@ -33,7 +33,7 @@ const taskSchema = new SCHEMA({
     imageLink:{
         type:String,
     },
-    listId:{
+    workId:{
         type:SCHEMA.Types.ObjectId,
         require:true
     },
