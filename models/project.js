@@ -10,9 +10,9 @@ let projectSchema = new SCHEMA({
         type:Date,
         require:[true,"Please fill start day of project!"]
     },
-    finishTime:{
+    endTime:{
         type:Date,
-        require:[true,"Please fill finish time of project!"]
+        require:[true,"Please fill end time of project!"]
     },
     status:{
         type:Boolean,
@@ -22,10 +22,10 @@ let projectSchema = new SCHEMA({
         type:String,
         require:[true,"Please fill your project name!"]
     },
-    roleIds:[
+    teamIds:[
         {
             type:SCHEMA.Types.ObjectId,
-            require:[true,"Please fill roleId of project!"]
+            require:[true,"Please fill teamId of project!"]
         }
     ]
     // mainProject: {

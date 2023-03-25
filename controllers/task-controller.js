@@ -1,13 +1,37 @@
 const TASK = require('../models/task')
+const WORK = require('../models/work')
 const MOMENT = require('moment')
 
 //done
-exports.getAllTaskInWork = async (req,res) => {
+exports.getAllTaskByIdProject = async (req, res) => {
     try {
-        let id = req.params.id 
+        let id = req.params.id
+        let data = []
+        let works = await WORK.find({
+            projectId: id
+        })
+        for (i of works) {
+            let tasks = await TASK.find({
+                workId: i._id
+            })
+            for (j of tasks) {
+                data.push(j)
+            }
+            // console.log(tasks);
+        }
+        return res.status(200).json(data)
+    } catch (error) {
+        return res.status(500).json(error)
+    }
+}
+
+//done
+exports.getAllTaskInWork = async (req, res) => {
+    try {
+        let id = req.params.id
         console.log(id);
         let tasks = await TASK.find({
-            workId:id
+            workId: id
         })
         return res.status(200).json(tasks)
     } catch (error) {
@@ -16,9 +40,9 @@ exports.getAllTaskInWork = async (req,res) => {
 }
 
 //done
-exports.getTaskById = async (req,res) => {
+exports.getTaskById = async (req, res) => {
     try {
-        let id = req.params.id 
+        let id = req.params.id
         let tasks = await TASK.findById(id)
         return res.status(200).json(tasks)
     } catch (error) {
@@ -27,11 +51,11 @@ exports.getTaskById = async (req,res) => {
 }
 
 //done
-exports.getTaskByName = async (req,res) => {
+exports.getTaskByName = async (req, res) => {
     try {
         let name = req.params.name
         let task = await TASK.find({
-            name:name
+            name: name
         })
         return res.status(200).json(task)
     } catch (error) {
@@ -40,20 +64,20 @@ exports.getTaskByName = async (req,res) => {
 }
 
 //done
-exports.createTask = async (req,res) => {
+exports.createTask = async (req, res) => {
     try {
-        let {name, startDay, finishDay, startHour, finishHour, linkSupport, imageLink, workId, members} = req.body
-        let dateStart = MOMENT(startDay,"MM-DD-YYYY")      
-        let dateFinish = MOMENT(finishDay,"MM-DD-YYYY")      
+        let { name, startDay, endDay, startHour, endHour, linkSupport, imageLink, workId, members } = req.body
+        let dateStart = MOMENT(startDay, "MM-DD-YYYY")
+        let dateend = MOMENT(endDay, "MM-DD-YYYY")
         let task = await TASK.create({
-            name:name,
-            startDay:dateStart,
-            finishDay:dateFinish,
-            startHour:startHour,
-            finishHour:finishHour,
-            linkSupport:linkSupport,
-            imageLink:imageLink,
-            workId:workId,
+            name: name,
+            startDay: dateStart,
+            endDay: dateend,
+            startHour: startHour,
+            endHour: endHour,
+            linkSupport: linkSupport,
+            imageLink: imageLink,
+            workId: workId,
             members
         })
         return res.status(200).json(task)
@@ -63,23 +87,32 @@ exports.createTask = async (req,res) => {
 }
 
 //done
-exports.updateTask = async (req,res) => {
+exports.updateTask = async (req, res) => {
     try {
-        let {name, startDay, finishDay, startTime, finishTime, linkSupport, listId,imageLink} = req.body
-        let id = req.params.id 
-        let dateStart = MOMENT(startDay,"MM-DD-YYYY")      
-        let dateFinish = MOMENT(finishDay,"MM-DD-YYYY")  
-        await TASK.findByIdAndUpdate(id,{
-            name:name,
-            startDay:dateStart,
-            finishDay:dateFinish,
-            startTime:startTime,
-            finishTime:finishTime,
-            linkSupport:linkSupport,
-            imageLink:imageLink,
-            listId:listId
-        })
+        let { name, startDay, endDay, startTime, endTime, linkSupports, imageLink, userId } = req.body
+        let id = req.params.id
+        let check = true
+        let dateStart = MOMENT(startDay, "MM-DD-YYYY")
+        let dateend = MOMENT(endDay, "MM-DD-YYYY")
         let task = await TASK.findById(id)
+        for (i of task.members) {
+            if (userId == i) {
+                check = false
+            }
+        }
+        if (check) {
+            return res.status(400).json({
+                message: "Only member can edit"
+            })
+        }
+        task.name = name
+        task.startDay = dateStart
+        task.endDay = dateend
+        task.startTime = startTime
+        task.endTime = endTime
+        task.linkSupports = linkSupports
+        task.imageLink = imageLink
+        task.save()
         return res.status(200).json(task)
     } catch (error) {
         return res.status(500).json(error)
@@ -87,12 +120,12 @@ exports.updateTask = async (req,res) => {
 }
 
 //done
-exports.changeName = async (req,res) => {
+exports.changeName = async (req, res) => {
     try {
         let name = req.body.name
-        let id = req.params.id 
-        await TASK.findByIdAndUpdate(id,{
-            name:name
+        let id = req.params.id
+        await TASK.findByIdAndUpdate(id, {
+            name: name
         })
         let task = await TASK.findById(id)
         return res.status(200).json(task)
@@ -109,7 +142,7 @@ exports.changeName = async (req,res) => {
 //         let _links = _task.link_supports
 //         for(let i = 0 ; i < _links.length() ; i ++ ){
 //             if(_links[i] == _link_support){
-                
+
 //             }
 //         }
 //         res.status(200).json(_task)
@@ -119,13 +152,13 @@ exports.changeName = async (req,res) => {
 // }
 
 //done
-exports.deleteTask = async (req,res) => {
+exports.deleteTask = async (req, res) => {
     try {
-        let id = req.params.id 
+        let id = req.params.id
         await TASK.deleteOne({ _id: id });
         return res.status(200).json({
-            id:id,
-            msg:"Success"
+            id: id,
+            msg: "Success"
         })
     } catch (error) {
         return res.status(500).json(error)

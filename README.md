@@ -260,9 +260,61 @@
         "__v": 0
     }
     ```
-## Role
-- getAllRolesOfUser:
-    - Api: **GET**:    https://ptask.cyclic.app/api/v1/roles/63f47b681e6c6175bf4ce69c
+## Team
+- getAllTeamOfIdProject:
+    - Api: **GET**:    hhttp://localhost:3000/api/v1/teams/teams/641eb335bb721b7cdd8cbf36
+    - Reponse
+    ```json
+    [
+        {
+            "_id": "641eb30abb721b7cdd8cbf30",
+            "name": "Team 2",
+            "createId": "641eb246bb721b7cdd8cbf1f",
+            "leaderId": "641eb25bbb721b7cdd8cbf2b",
+            "members": [
+                "641eb24fbb721b7cdd8cbf25",
+                "641eb25bbb721b7cdd8cbf2b"
+            ],
+            "status": true,
+            "__v": 0
+        },
+        {
+            "_id": "641eb315bb721b7cdd8cbf32",
+            "name": "Team 1",
+            "createId": "641eb246bb721b7cdd8cbf1f",
+            "leaderId": "641eb25bbb721b7cdd8cbf2b",
+            "members": [
+                "641eb24fbb721b7cdd8cbf25",
+                "641eb25bbb721b7cdd8cbf2b"
+            ],
+            "status": true,
+            "__v": 0
+        },
+        {
+            "_id": "641eb335bb721b7cdd8cbf34",
+            "name": "Project Owner",
+            "leaderId": "641eb246bb721b7cdd8cbf1f",
+            "members": [
+                "641eb246bb721b7cdd8cbf1f"
+            ],
+            "__v": 0
+        }
+    ]
+    ```
+- getAllMemberOfIdProject:
+    - Api: **GET**:    http://localhost:3000/api/v1/teams/members/641ba3f0efd24fc581820aba
+    - Reponse
+    ```json
+    [
+        "641ba31887b485c176a160ba",
+        "641ba30d87b485c176a160b4",
+        "641ba31887b485c176a160ba",
+        "641ba30d87b485c176a160b4",
+        "641ba2cf87b485c176a160ae"
+    ]
+    ```
+- getAllTeamOfUser:
+    - Api: **GET**:    https://ptask.cyclic.app/api/v1/teams/63f47b681e6c6175bf4ce69c
     - Reponse
     ```json
     [
@@ -276,8 +328,8 @@
         }
     ]
     ```
-- createRole:
-    - Api: **POST**:    https://ptask.cyclic.app/api/v1/roles/create
+- createTeam:
+    - Api: **POST**:    https://ptask.cyclic.app/api/v1/teams/create
     - Request
     ```json
     {
@@ -303,8 +355,8 @@
         "__v": 0
     }
     ```
-- changeNameRole:
-    - Api: **PATCH**:    https://ptask.cyclic.app/api/v1/roles/change-name/63f4806dc4ec61b3edc26f6e
+- changeNameTeam:
+    - Api: **PATCH**:    https://ptask.cyclic.app/api/v1/teams/change-name/63f4806dc4ec61b3edc26f6e
     - Request
     ```json
     {
@@ -321,8 +373,8 @@
         ],
         "__v": 2
     }
-- addMembersRole: **Đang có bug**
-    - Api: **PATCH**:    https://ptask.cyclic.app/api/v1/roles/add-member/63f4806dc4ec61b3edc26f6e
+- addMembersTeam: **Đang có bug**
+    - Api: **PATCH**:    https://ptask.cyclic.app/api/v1/teams/add-member/63f4806dc4ec61b3edc26f6e
     - Request
     ```json
     {
@@ -341,8 +393,8 @@
     }
     ```
 
-- removeMemberRole: 
-    - Api: **PATCH**:    https://ptask.cyclic.app/api/v1/roles/remove-member/63f4806dc4ec61b3edc26f6e
+- removeMemberTeam: 
+    - Api: **PATCH**:    https://ptask.cyclic.app/api/v1/teams/remove-member/63f4806dc4ec61b3edc26f6e
     - Request
     ```json
     {
@@ -352,7 +404,7 @@
     - Reponse
     ```json
     {
-        "role": {
+        "team": {
             "_id": "63f4806dc4ec61b3edc26f6e",
             "name": "Name 1",
             "members": [],
@@ -371,18 +423,18 @@
             "_id": "63f4836e4986d4991247715a",
             "name": "name",
             "startTime": "2001-03-22T17:00:00.000Z",
-            "finishTime": "2100-03-22T17:00:00.000Z",
+            "endTime": "2100-03-22T17:00:00.000Z",
             "status": true,
-            "roleIds": [],
+            "teamIds": [],
             "__v": 0
         },
         {
             "_id": "63f483964986d4991247715c",
             "name": "name",
             "startTime": "2001-03-22T17:00:00.000Z",
-            "finishTime": "2100-03-22T17:00:00.000Z",
+            "endTime": "2100-03-22T17:00:00.000Z",
             "status": true,
-            "roleIds": [],
+            "teamIds": [],
             "__v": 0
         }
     ]
@@ -395,8 +447,8 @@
         "mainProject":"641ba2cf87b485c176a160ae",
         "name":"Project test",
         "startTime" :"03-24-2001",
-        "finishTime" :"03-24-2001",
-        "roleIds":["641ba36e87b485c176a160bc","641ba3a387b485c176a160be"]
+        "endTime" :"03-24-2001",
+        "teamIds":["641ba36e87b485c176a160bc","641ba3a387b485c176a160be"]
     }
     ```
     - Reponse
@@ -404,10 +456,10 @@
     {
         "name": "Project test",
         "startTime": "2001-03-23T17:00:00.000Z",
-        "finishTime": "2001-03-23T17:00:00.000Z",
+        "endTime": "2001-03-23T17:00:00.000Z",
         "status": true,
         "background": "https://iuh4kltn.s3.ap-southeast-1.amazonaws.com/project.png",
-        "roleIds": [
+        "teamIds": [
             "641ba36e87b485c176a160bc",
             "641ba3a387b485c176a160be",
             "641ba3f0efd24fc581820ab8"
@@ -424,9 +476,9 @@
         "_id": "63f4836e4986d4991247715a",
         "name": "name",
         "startTime": "2001-03-22T17:00:00.000Z",
-        "finishTime": "2100-03-22T17:00:00.000Z",
+        "endTime": "2100-03-22T17:00:00.000Z",
         "status": true,
-        "roleIds": [],
+        "teamIds": [],
         "__v": 0
     }
     ```
@@ -439,18 +491,18 @@
             "_id": "63f4836e4986d4991247715a",
             "name": "name",
             "startTime": "2001-03-22T17:00:00.000Z",
-            "finishTime": "2100-03-22T17:00:00.000Z",
+            "endTime": "2100-03-22T17:00:00.000Z",
             "status": true,
-            "roleIds": [],
+            "teamIds": [],
             "__v": 0
         },
         {
             "_id": "63f483964986d4991247715c",
             "name": "name",
             "startTime": "2001-03-22T17:00:00.000Z",
-            "finishTime": "2100-03-22T17:00:00.000Z",
+            "endTime": "2100-03-22T17:00:00.000Z",
             "status": true,
-            "roleIds": [],
+            "teamIds": [],
             "__v": 0
         }
     ]
@@ -464,10 +516,10 @@
             "_id": "64194e53a0702b7822abd5d9",
             "name": "Project 1",
             "startTime": "2001-03-23T17:00:00.000Z",
-            "finishTime": "2001-04-23T17:00:00.000Z",
+            "endTime": "2001-04-23T17:00:00.000Z",
             "status": true,
             "background": "https://iuh4kltn.s3.ap-southeast-1.amazonaws.com/project.png",
-            "roleIds": [
+            "teamIds": [
                 "641479b36e21cef193748903",
                 "641479ca6e21cef193748905"
             ],
@@ -478,10 +530,10 @@
             "_id": "641a946603fca33b72b65318",
             "name": "Project test time",
             "startTime": "2001-03-23T17:00:00.000Z",
-            "finishTime": "2001-03-23T17:00:00.000Z",
+            "endTime": "2001-03-23T17:00:00.000Z",
             "status": true,
             "background": "https://iuh4kltn.s3.ap-southeast-1.amazonaws.com/project.png",
-            "roleIds": [
+            "teamIds": [
                 "641479b36e21cef193748903",
                 "641479ca6e21cef193748905"
             ],
@@ -492,7 +544,7 @@
     ```
 ## Work
 - getAllWorkByProjectId:
-    - Api: **GET**:    hhttps://ptask.cyclic.app/api/v1/works/63f4836e4986d4991247715a
+    - Api: **GET**:    hhttps://ptask.cyclic.app/api/v1/works/all-work-project/63f4836e4986d4991247715a
     - Reponse
     ```json
     [
@@ -519,14 +571,53 @@
         }
     ]
     ```
+- getWorkByName:
+    - Api: **GET**:    http://localhost:3000/api/v1/works/name/Work 2
+    - Reponse
+    ```json
+    [
+        {
+            "_id": "641eb80287c02b20789b3635",
+            "name": "Work 2",
+            "status": false,
+            "startTime": "2001-03-22T17:00:00.000Z",
+            "endTime": "2002-03-22T17:00:00.000Z",
+            "teamId": "641eb315bb721b7cdd8cbf32",
+            "createId": "641eb25bbb721b7cdd8cbf2b",
+            "projectId": "641eb335bb721b7cdd8cbf36",
+            "__v": 0
+        }
+    ]
+    ```
+- getWorkById:
+    - Api: **GET**:    http://localhost:3000/api/v1/works/641eb80287c02b20789b3635
+    - Reponse
+    ```json
+    [
+        {
+            "_id": "641eb80287c02b20789b3635",
+            "name": "Work 2",
+            "status": false,
+            "startTime": "2001-03-22T17:00:00.000Z",
+            "endTime": "2002-03-22T17:00:00.000Z",
+            "teamId": "641eb315bb721b7cdd8cbf32",
+            "createId": "641eb25bbb721b7cdd8cbf2b",
+            "projectId": "641eb335bb721b7cdd8cbf36",
+            "__v": 0
+        }
+    ]
+    ```
 - createWork
-    - Api: **PATCH**:    https://ptask.cyclic.app/api/v1/works/change-name/6407447d95b5b542e6bc7e0d
+    - Api: **POST**:    http://localhost:3000/api/v1/works/
     - Request
     ```json
     {
-        "createId":"641329c27a9b8b3c70c80864",
-        "name":"Work 1",
-        "projectId":"63f4836e4986d4991247715a"    
+        "teamId":"641eb315bb721b7cdd8cbf32",
+        "createId":"641eb25bbb721b7cdd8cbf2b",
+        "name":"Work 2",
+        "startTime": "03/23/2001",
+        "endTime": "03/23/2002",
+        "projectId":"641eb335bb721b7cdd8cbf36"    
     }
     ```
     - Reponse
@@ -534,9 +625,57 @@
     {
         "name": "Work 2",
         "status": false,
-        "createId": "641ba30d87b485c176a160b4",
-        "projectId": "641ba3f0efd24fc581820aba",
-        "_id": "641ba5aaefd24fc581820abe",
+        "startTime": "2001-03-22T17:00:00.000Z",
+        "endTime": "2002-03-22T17:00:00.000Z",
+        "teamId": "641eb315bb721b7cdd8cbf32",
+        "createId": "641eb25bbb721b7cdd8cbf2b",
+        "projectId": "641eb335bb721b7cdd8cbf36",
+        "_id": "641eb80287c02b20789b3635",
+        "__v": 0
+    }
+    ```
+- changeNameWork
+    - Api: **PATCH**:    http://localhost:3000/api/v1/works/change-name/641eb353bb721b7cdd8cbf38
+    - Request
+    ```json
+    {
+        "createId":"641329c27a9b8b3c70c80864",
+        "name":"Test change name 1"
+    }
+    ```
+    - Reponse
+    ```json
+    {
+        "_id": "641eb7fc87c02b20789b3633",
+        "name": "Test change name 1",
+        "status": false,
+        "startTime": "2001-03-22T17:00:00.000Z",
+        "endTime": "2002-03-22T17:00:00.000Z",
+        "teamId": "641eb315bb721b7cdd8cbf32",
+        "createId": "641eb25bbb721b7cdd8cbf2b",
+        "projectId": "641eb335bb721b7cdd8cbf36",
+        "__v": 0
+    }
+    ```
+- changeStatusWork
+    - Api: **PATCH**:    http://localhost:3000/api/v1/works/change-status/641eb353bb721b7cdd8cbf38
+    - Request
+    ```json
+    {
+        "createId":"641329c27a9b8b3c70c80864",
+    }
+    ```
+    - Reponse
+    ```json
+    {
+        "_id": "641eb7fc87c02b20789b3633",
+        "name": "Test change name 1",
+        "status": true,
+        "startTime": "2001-03-22T17:00:00.000Z",
+        "endTime": "2002-03-22T17:00:00.000Z",
+        "teamId": "641eb315bb721b7cdd8cbf32",
+        "createId": "641eb25bbb721b7cdd8cbf2b",
+        "projectId": "641eb335bb721b7cdd8cbf36",
         "__v": 0
     }
     ```
@@ -548,9 +687,9 @@
     {
         "name":"task 2",
         "startDay":"03-23-2001",
-        "finishDay":"03-23-2010",
+        "endDay":"03-23-2010",
         "startHour":"9:00",
-        "finishHour":"16:00",
+        "endHour":"16:00",
         "linkSupport":"ABC",
         "imageLink":"ABC",
         "workId":"641ba5a6efd24fc581820abc",
@@ -562,9 +701,9 @@
     {
         "name": "task 2",
         "startDay": "2001-03-22T17:00:00.000Z",
-        "finishDay": "2010-03-22T17:00:00.000Z",
+        "endDay": "2010-03-22T17:00:00.000Z",
         "startHour": "9:00",
-        "finishHour": "16:00",
+        "endHour": "16:00",
         "imageLink": "ABC",
         "workId": "641ba5a6efd24fc581820abc",
         "members": [
@@ -576,7 +715,46 @@
         "__v": 0
     }
     ```
-- getAllTaskInList 
+- getAllTaskInProject (by Id project)
+    - Api: **GET**:    http://localhost:3000/api/v1/tasks/get-task-in-project/641ba3f0efd24fc581820aba
+    - Reponse
+    ```json
+    [
+        {
+            "_id": "641d8afa0c7438d1c496a16b",
+            "name": "task 1",
+            "startDay": "2001-03-22T17:00:00.000Z",
+            "endDay": "2010-03-22T17:00:00.000Z",
+            "startHour": "9:00",
+            "endHour": "16:00",
+            "imageLink": "ABC",
+            "workId": "641d8aa80c7438d1c496a167",
+            "members": [
+                "641ba30d87b485c176a160b4"
+            ],
+            "status": 3,
+            "linkSupports": [],
+            "__v": 0
+        },
+        {
+            "_id": "641d8afd0c7438d1c496a16d",
+            "name": "task 2",
+            "startDay": "2001-03-22T17:00:00.000Z",
+            "endDay": "2010-03-22T17:00:00.000Z",
+            "startHour": "9:00",
+            "endHour": "16:00",
+            "imageLink": "ABC",
+            "workId": "641d8aa80c7438d1c496a167",
+            "members": [
+                "641ba30d87b485c176a160b4"
+            ],
+            "status": 3,
+            "linkSupports": [],
+            "__v": 0
+        }
+    ]
+    ```
+- getAllTaskInWork 
     - Api: **GET**:    https://ptask.cyclic.app/api/v1/tasks/get-task-in-list/63f48728f071ef7be2a9e9bd
     - Reponse
     ```json
@@ -586,9 +764,9 @@
             "_id": "63f48c86c765a223ecb74b8e",
             "name": "name",
             "startDay": "2001-03-22T17:00:00.000Z",
-            "finishDay": "2010-03-22T17:00:00.000Z",
+            "endDay": "2010-03-22T17:00:00.000Z",
             "startHour": "9:00",
-            "finishHour": "16:00",
+            "endHour": "16:00",
             "imageLink": "ABC",
             "listId": "63f48728f071ef7be2a9e9bd",
             "members": [
@@ -602,9 +780,9 @@
             "_id": "640745aa372921bca42eae22",
             "name": "name",
             "startDay": "2001-03-22T17:00:00.000Z",
-            "finishDay": "2010-03-22T17:00:00.000Z",
+            "endDay": "2010-03-22T17:00:00.000Z",
             "startHour": "9:00",
-            "finishHour": "16:00",
+            "endHour": "16:00",
             "imageLink": "ABC",
             "listId": "63f48728f071ef7be2a9e9bd",
             "members": [
@@ -626,9 +804,9 @@
         "_id": "63f48c86c765a223ecb74b8e",
         "name": "name",
         "startDay": "2001-03-22T17:00:00.000Z",
-        "finishDay": "2010-03-22T17:00:00.000Z",
+        "endDay": "2010-03-22T17:00:00.000Z",
         "startHour": "9:00",
-        "finishHour": "16:00",
+        "endHour": "16:00",
         "imageLink": "ABC",
         "listId": "63f48728f071ef7be2a9e9bd",
         "members": [
@@ -649,9 +827,9 @@
             "_id": "63f48c86c765a223ecb74b8e",
             "name": "name",
             "startDay": "2001-03-22T17:00:00.000Z",
-            "finishDay": "2010-03-22T17:00:00.000Z",
+            "endDay": "2010-03-22T17:00:00.000Z",
             "startHour": "9:00",
-            "finishHour": "16:00",
+            "endHour": "16:00",
             "imageLink": "ABC",
             "listId": "63f48728f071ef7be2a9e9bd",
             "members": [
@@ -665,9 +843,9 @@
             "_id": "640745aa372921bca42eae22",
             "name": "name",
             "startDay": "2001-03-22T17:00:00.000Z",
-            "finishDay": "2010-03-22T17:00:00.000Z",
+            "endDay": "2010-03-22T17:00:00.000Z",
             "startHour": "9:00",
-            "finishHour": "16:00",
+            "endHour": "16:00",
             "imageLink": "ABC",
             "listId": "63f48728f071ef7be2a9e9bd",
             "members": [
@@ -679,4 +857,37 @@
             "__v": 0
         }
     ]
+    ```
+- updateTask
+    - Api: **PATCH**:    http://localhost:3000/api/v1/tasks/update/63f48c272df79e949fe9243b
+    - Request
+    ```json
+    {
+        "name":"task test update",
+        "startDay":"03-23-2001",
+        "endDay":"03-23-20100",
+        "startTime":"9:00",
+        "endTime":"16:00",
+        "linkSupport":["ABC"],
+        "imageLink":"ABC",
+        "userId":"641eb24fbb721b7cdd8cbf25"
+    }
+    ```
+    - Reponse
+    ```json
+    {
+        "_id": "641eb81187c02b20789b3637",
+        "name": "task test update",
+        "startDay": "2001-03-22T17:00:00.000Z",
+        "endDay": "2010-03-22T17:00:00.000Z",
+        "startHour": "9:00",
+        "endHour": "16:00",
+        "imageLink": "ABC",
+        "workId": "641eb7fc87c02b20789b3633",
+        "members": [
+            "641eb24fbb721b7cdd8cbf25"
+        ],
+        "status": 3,
+        "__v": 0
+    }
     ```

@@ -1,7 +1,9 @@
 const ROUTER = require("express").Router()
 const workController = require("../controllers/work-controller")
 
-ROUTER.get("/:id",workController.getAllWorkByProjectId)
+ROUTER.get("/:id",workController.getWorkById)
+ROUTER.get("/all-work-project/:id",workController.getAllWorkByProjectId)
+ROUTER.get("/name/:name",workController.getWorkByName)
 
 ROUTER.post("/",workController.createWork)
 
