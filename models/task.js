@@ -13,17 +13,17 @@ const taskSchema = new SCHEMA({
         type:Date,
         require:[true,"Please fill start day of task!"]
     },
-    finishDay:{
+    endDay:{
         type:Date,
-        require:[true,"Please fill finish day of task!"]
+        require:[true,"Please fill end day of task!"]
     },
     startHour:{
         type:String,
         require:[true,"Please fill start Hour of task!"]
     },
-    finishHour:{
+    endHour:{
         type:String,
-        require:[true,"Please fill finish Hour of task!"]
+        require:[true,"Please fill end Hour of task!"]
     },
     linkSupports:[
         {

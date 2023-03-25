@@ -1,7 +1,8 @@
 const MONGOOSE = require('mongoose')
 const SCHEMA = MONGOOSE.Schema
 
-let roleSchema = new SCHEMA({
+// Đổi tên thành = team
+let teamSchema = new SCHEMA({
     name: {
         type: String,
         require:true
@@ -26,4 +27,4 @@ let roleSchema = new SCHEMA({
     }
 })
 
-module.exports = MONGOOSE.model("role", roleSchema)
+module.exports = MONGOOSE.model("team", teamSchema)

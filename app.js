@@ -12,7 +12,7 @@ const app = express()
 
 const accountRouter = require("./routes/account-router")
 const userRouter = require("./routes/user-router")
-const roleRouter = require("./routes/role-router")
+const teamRouter = require("./routes/team-router")
 const authRouter = require("./routes/auth-router")
 const projectRouter = require("./routes/project-router")
 const workRouter = require("./routes/work-router")
@@ -30,7 +30,7 @@ app.use(hpp());
 
 app.use('/api/v1/accounts',accountRouter)
 app.use('/api/v1/users',userRouter)
-app.use('/api/v1/roles',roleRouter)
+app.use('/api/v1/teams',teamRouter)
 app.use('/api/v1/projects',projectRouter)
 app.use('/api/v1/works',workRouter)
 app.use('/api/v1/tasks',taskRouter)

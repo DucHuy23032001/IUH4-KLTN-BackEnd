@@ -14,7 +14,7 @@ let thingSchema = new SCHEMA({
         type:Date,
         require:true
     },
-    finishTime:{
+    endTime:{
         type:Date,
         require:true
     },

@@ -3,12 +3,12 @@ const BCRYPT = require('bcrypt')
 const JWT = require("jsonwebtoken");
 const USER = require('../models/user');
 
-exports.createToken = (req,res) => {
+exports.createToken = (user) => {
     try {
-        let data = req.body
+        // let data = req.body
         return JWT.sign(
             {
-                data,
+                user,
             },
             process.env.JWT_SECRET,
             {
