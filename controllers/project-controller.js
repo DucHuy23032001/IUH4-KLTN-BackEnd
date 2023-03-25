@@ -1,5 +1,5 @@
 const PROJECT = require('../models/project')
-const ROLE = require('../models/role')
+const TEAM = require('../models/team')
 const MOMENT = require('moment')
 
 //done
@@ -41,12 +41,12 @@ exports.getProjectByIdUser = async (req,res) => {
   try {
       let id = req.params.id
       let project
-      let role = await ROLE.find({
+      let team = await TEAM.find({
         members:{ $in: [id]},
       })
-      for (let i of role) {
+      for (let i of team) {
         project = await PROJECT.find({
-          roleIds: {$in: [i.id]}
+          teamIds: {$in: [i.id]}
         })
       }
       return res.status(200).json(project) 
@@ -58,9 +58,9 @@ exports.getProjectByIdUser = async (req,res) => {
 //done
 exports.updateProject = async (req,res) => {
   try {
-    let {name,startTime, finishTime,status,roleIds, background, mainProject} = req.body
+    let {name,startTime, endTime,status,teamIds, background, mainProject} = req.body
     let start = MOMENT(startTime,"MM-DD-YYYY")      
-    let finish = MOMENT(finishTime,"MM-DD-YYYY")   
+    let end = MOMENT(endTime,"MM-DD-YYYY")   
     let id = req.params.id
 
     let projectCheck = await PROJECT.findById(id)
@@ -70,19 +70,19 @@ exports.updateProject = async (req,res) => {
       })
     }
 
-    if (finish - start < 0) {
+    if (end - start < 0) {
       return res.status(400).json({
-        message:"finishTime > startTime"
+        message:"endTime > startTime"
       })
     }
 
     await PROJECT.findByIdAndUpdate(id,{
       name:name,
       start_time :start,
-      finish_time : finish,
+      end_time : end,
       status:status,
       background:background,
-      roleIds:roleIds
+      teamIds:teamIds
     })  
     let project = await PROJECT.findById(id)
     return res.status(200).json(project) 
@@ -94,9 +94,9 @@ exports.updateProject = async (req,res) => {
 //done
 exports.createProject = async (req,res) => {
   try {
-    let {name,startTime, finishTime,roleIds, background, mainProject} = req.body
+    let {name, startTime, endTime, teamIds , background, mainProject} = req.body
     let start = MOMENT(startTime,"MM-DD-YYYY")      
-    let finish = MOMENT(finishTime,"MM-DD-YYYY")    
+    let end = MOMENT(endTime,"MM-DD-YYYY")    
     
     if(!background){
       background = "https://iuh4kltn.s3.ap-southeast-1.amazonaws.com/project.png"
@@ -105,27 +105,27 @@ exports.createProject = async (req,res) => {
       startTime = Date.now()
     }
 
-    if (finish - start < 0) {
+    if (end - start < 0) {
       return res.status(400).json({
-        message:"finishTime > startTime"
+        message:"endTime > startTime"
       })
     }
 
-    let role = await ROLE.create({
+    let team = await TEAM.create({
       leaderId:mainProject,
       name: "Project Owner",
       members: [mainProject]
     })
 
-    roleIds.push(role)
+    teamIds.push(team)
 
     let project = await PROJECT.create({
       name:name,
       startTime :start,
-      finishTime : finish,
+      endTime : end,
       status:1,
       background:background,
-      roleIds:roleIds 
+      teamIds:teamIds 
     })
     return res.status(201).json(project) 
   } catch (error) {

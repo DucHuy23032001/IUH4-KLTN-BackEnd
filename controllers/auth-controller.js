@@ -21,7 +21,7 @@ exports.signUp = async (req, res) => {
     }
     let accountId = await accountController.createAccount(req, res)
     let user = await userController.createUser(req, res, accountId)
-    let token = accountService.createToken(req, res)
+    let token = accountService.createToken(user)
 
     return res.status(200).json({
       user: user,
