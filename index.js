@@ -3,6 +3,7 @@ const DOTENV = require("dotenv");
 const APP = require("./app");
 const PORT = process.env.PORT;
 
+// check
 DOTENV.config({
     path: "./config.env",
 });
